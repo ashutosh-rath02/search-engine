@@ -7,18 +7,18 @@ class InvertedIndex:
     that contain them.
     """
     
-    def __init__(self, tokenizer=None):
+    def __init__(self, tokenizer=None, use_lemmatization=True):
         """
         Initialize the inverted index.
         
         Args:
             tokenizer: The tokenizer to use for processing text
+            use_lemmatization: Whether to use lemmatization instead of just tokenization
         """
-        # Term -> set of doc_ids
-        self.index = defaultdict(set)  
-        # Document ID -> original document content
-        self.documents = {} 
+        self.index = defaultdict(set)  # Term -> set of doc_ids
+        self.documents = {}  # doc_id -> original content
         self.tokenizer = tokenizer or Tokenizer()
+        self.use_lemmatization = use_lemmatization
     
     def add_document(self, doc_id, content):
         """
@@ -30,7 +30,10 @@ class InvertedIndex:
         """
         self.documents[doc_id] = content
         
-        tokens = self.tokenizer.tokenize(content)
+        if self.use_lemmatization:
+            tokens = self.tokenizer.lemmatize(content)
+        else:
+            tokens = self.tokenizer.tokenize(content)
         
         for token in tokens:
             self.index[token].add(doc_id)
@@ -45,7 +48,11 @@ class InvertedIndex:
         Returns:
             A set of document IDs that contain the term
         """
-        processed_terms = self.tokenizer.tokenize(term)
+        if self.use_lemmatization:
+            processed_terms = self.tokenizer.lemmatize(term)
+        else:
+            processed_terms = self.tokenizer.tokenize(term)
+            
         if not processed_terms:
             return set()
         
