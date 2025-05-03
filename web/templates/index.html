@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Engine Demo</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Advanced Search Engine</h1>
+        <p>Compare different search techniques in real-time</p>
+      </header>
+
+      <div class="search-container">
+        <div class="search-box">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Enter your search query..."
+          />
+          <button id="search-button">Search</button>
+        </div>
+
+        <div class="search-options">
+          <h3>Search Techniques:</h3>
+          <div class="technique-buttons">
+            <button class="technique-btn active" data-mode="combined">
+              Combined
+            </button>
+            <button class="technique-btn" data-mode="basic">Basic</button>
+            <button class="technique-btn" data-mode="fuzzy">Fuzzy</button>
+            <button class="technique-btn" data-mode="phonetic">Phonetic</button>
+            <button class="technique-btn" data-mode="semantic">Semantic</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="results-container">
+        <div class="results-header">
+          <h2>Search Results <span id="results-count">(0)</span></h2>
+          <p id="search-info">
+            Search time: <span id="search-time">0</span> ms
+          </p>
+        </div>
+
+        <div id="results-list" class="results-list">
+          <div class="no-results">Enter a search query to see results</div>
+        </div>
+      </div>
+
+      <div class="visualization-container">
+        <h2>Search Process Visualization</h2>
+        <div class="process-toggle">
+          <button class="process-btn active" data-technique="all">
+            All Techniques
+          </button>
+          <button class="process-btn" data-technique="basic">Basic</button>
+          <button class="process-btn" data-technique="fuzzy">Fuzzy</button>
+          <button class="process-btn" data-technique="phonetic">
+            Phonetic
+          </button>
+          <button class="process-btn" data-technique="semantic">
+            Semantic
+          </button>
+        </div>
+        <div id="visualization-area" class="visualization-area">
+          <div class="visualization-placeholder">
+            Enter a search query to visualize the search process
+          </div>
+        </div>
+      </div>
+
+      <div class="explanation-box">
+        <h3>Search Techniques Explained</h3>
+        <div class="techniques-explained">
+          <div class="technique-card">
+            <h4>Basic Search</h4>
+            <p>
+              Keyword-based search with TF-IDF ranking. Matches exact words in
+              documents.
+            </p>
+          </div>
+          <div class="technique-card">
+            <h4>Fuzzy Search</h4>
+            <p>
+              Handles typos and misspellings using edit distance. Try
+              misspelling words!
+            </p>
+          </div>
+          <div class="technique-card">
+            <h4>Phonetic Search</h4>
+            <p>Matches words that sound similar (e.g., "phone" and "fone").</p>
+          </div>
+          <div class="technique-card">
+            <h4>Semantic Search</h4>
+            <p>
+              Understands meaning using word embeddings. Finds related concepts.
+            </p>
+          </div>
+          <div class="technique-card">
+            <h4>Combined Search</h4>
+            <p>
+              Uses all techniques above and combines results for best
+              performance.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>

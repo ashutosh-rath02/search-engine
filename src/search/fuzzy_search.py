@@ -1,4 +1,3 @@
-import heapq
 import time
 from ..indexing.inverted_index import InvertedIndex
 

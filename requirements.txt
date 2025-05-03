@@ -3,3 +3,4 @@ numpy==1.24.3
 scikit-learn==1.3.0
 phonetics==1.0.5
 sentence-transformers==2.2.2
+flask==2.3.3
